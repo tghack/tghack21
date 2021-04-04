@@ -4,8 +4,7 @@
 
 **Hints:**
 
-1. 
-> RFC 3261, RFC 3665, RFC 4040 - 5., RFC 4566 - 6., RFC 3551 - 4.5.14 and 6., and RFC 3550
+> 1. RFC 3261, RFC 3665, RFC 4040 - 5., RFC 4566 - 6., RFC 3551 - 4.5.14 and 6., and RFC 3550
 
 ## Analysis
 
@@ -63,11 +62,14 @@ This is the intended solution of this challenge, and requires coding knowledge a
 >  SIP is an application-layer control protocol that can establish,
 >   modify, and terminate multimedia sessions (conferences) such as
 >   Internet telephony calls.
+>
 > --- snip ---
+>
 >   SIP supports five facets of establishing and terminating multimedia communications:
->	--- snip ---
->      User capabilities: determination of the media and media parameters
->           to be used;
+>
+>  --- snip ---
+>
+> User capabilities: determination of the media and media parameters to be used;
 - [RFC 3261](https://tools.ietf.org/html/rfc3261)
 
 In other words, it's one of the protocols that are used to to make VoIP calls function. The calls in this challenge are extremely simplified, more advanced call flow examples can be found in [RFC 3665](https://tools.ietf.org/html/rfc3665).
