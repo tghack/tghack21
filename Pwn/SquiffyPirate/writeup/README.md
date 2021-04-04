@@ -18,7 +18,7 @@ $ checksec squiffy-pirate
     RWX:      Has RWX segments
 ```
 
-To solve this challenge, simply overflow the [buffer](insert-link-here) by sending 32 arbitrary bytes followed by the address of the function `open_chest` represented in Little Endian (LSB), which will overwrite the programs return instruction pointer (EIP, since this is a 32-bit executable). The address can be found by running `$ nm squiffy-pirate | grep chest` -> `080491b2`)
+To solve this challenge, simply overflow the [buffer](../squiffy-pirate.c#L13) by sending 32 arbitrary bytes followed by the address of the function `open_chest` represented in Little Endian (LSB), which will overwrite the programs return instruction pointer (EIP, since this is a 32-bit executable). The address can be found by running `$ nm squiffy-pirate | grep chest` -> `080491b2`)
 
 This is possible since the program is using the vulnerable function `gets()` which attempts to store everything we input into the specified buffer, without checking the size of the buffer. This allows program internals to be overwritten:
 
