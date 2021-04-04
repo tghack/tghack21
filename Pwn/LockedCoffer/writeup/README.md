@@ -20,7 +20,7 @@ $ checksec locked-coffer
 
 By looking at the output from `checksec`, we can see that the NX bit (no execute) is disabled here. This makes it possible to execute shellcode residing on the stack, if we can control the return instruction pointer. This is also the goal of the challenge. However, we can also see that this is a PIE (Position Independent Executable) binary, meaning that it consists of Position Independent Code. This makes it harder for us since memory addresses are randomized on each program execution. We therefore have to leak an address to be able to control code execution.
 
-Luckily for us, the binary contains a format string vulnerability in [chal.c#L17](insert-link-here). We can therefore send "format-strings" such as "%p " to *stdin*, which will cause `printf()` to start spitting out memory addresses of the program [exploit.py#L43](insert-link-here).
+Luckily for us, the binary contains a format string vulnerability in [locked-coffer.c#L17](locked-coffer.c#L17). We can therefore send "format-strings" such as "%p " to *stdin*, which will cause `printf()` to start spitting out memory addresses of the program [exploit.py#L43](exploit.py#L43).
 
 By debugging the binary in GDB with [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization) disabled, we can locate what each leaked memory address is used for. Once we have found the stack address we want to use, we have a relative address to point the return instruction pointer (RIP) to! 
 
@@ -46,7 +46,7 @@ gdb-peda$
 
 We can see that `saved rip = 0x6161616161616172`, and convert this to match our `cyclic` input and find the [correct offset](https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')Reverse('Character')&input=MHg2MTYxNjE2MTYxNjE2MTcy) to use for padding (junk bytes). 
 
-In the example solution script [exploit.py](), we have used the exact location of where our shellcode starts on the stack and have therefore subtracted `0xA0` from the leaked address. It is also possible to use NOP-sleds (A chain of <N> no-operation instructions) here instead of subtractions, which will let the instruction pointer "slide" onto the shellcode to executed. 
+In the example solution script [exploit.py](exploit.py), we have used the exact location of where our shellcode starts on the stack and have therefore subtracted `0xA0` from the leaked address. It is also possible to use NOP-sleds (A chain of <N> no-operation instructions) here instead of subtractions, which will let the instruction pointer "slide" onto the shellcode to executed. 
 
 Once we have successfully calculated the correct offset before sending data to control the application with and have obtained a leaked address, we can craft our [payload](exploit.py#L60) and send it to the application.
 
