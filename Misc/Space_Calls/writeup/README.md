@@ -21,11 +21,10 @@ With that information, and the fact that the challenge description mentioned VoI
 
 ![VoIP Calls](assets/images/voip_calls.png)
 
-We can now look at the `Flow Sequence` for these calls, and see that they resemble a normal flow for a VoIP call, we continuing by playing the streams (with `Play Steams`) of these calls. There is a male voice speaking out a single letter from the NATO Phonetic Alphabet per call. An example (`Papa`) can be found below. Notice also that the call uses `g711A` as the audio codec. 
+We can now look at the `Flow Sequence` for these calls, and see that they resemble a normal flow for a VoIP call, we continuing by playing the streams (with `Play Steams`) of these calls. There is a male voice speaking out a single letter from the NATO Phonetic Alphabet per call. An example (`Papa`) can be found [here](assets/P.mp3). Notice also that the call uses `g711A` as the audio codec. 
 
 ![Flow Sequence](assets/images/flow_sequence.png)
 ![Stream](assets/images/play_streams.png)
-![](assets/P.mp3)
 
 By clicking on `Prepare Filter`, we can see the packets for a specific call, parameters we the media attribute `PCMA/8000`.
 ![Call Packets](assets/images/call_packets.png)
@@ -283,9 +282,7 @@ sound.export("flag.mp3", format="mp3")
 
 The entire script can be found [here](assets/solve.py).
 
-![](assets/flag.mp3)
-
-Listening to `flag.mp3` we hear the same male voice reading the following:
+Listening to [`flag.mp3`](assets/flag.mp3) we hear the same male voice reading the following:
 
 ```shell
 TANGO

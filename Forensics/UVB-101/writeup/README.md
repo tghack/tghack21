@@ -29,11 +29,7 @@ Then we need to tune into the correct frequency 101 MHz (the capture width of th
 
 Gqrx comes with multiple modes, and after scrolling through the modes we hear relatively clear audio when using WFM (Wideband FM).
 
-The capture starts with 6 loud buzzers, followed by a Russian voice reading some numbers. The start of the capture and the entire recording can be found below **(NB! Loud)**.
-
-![](assets/start.mp4)
-![](assets/UVB-101.mp3)
-
+The capture starts with 6 loud buzzers, followed by a Russian voice reading some numbers. A video with the start of the capture can be found [here](assets/start.mp4), whilst the entire recording can be found [here](assets/UVB-101.mp3). **(NB! Loud)**.
 
 We notice that there is a 2 second pause between each number reading. Writing down the numbers give us the following:
 
