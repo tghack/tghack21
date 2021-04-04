@@ -20,7 +20,7 @@ $ checksec locked-coffer
 
 By looking at the output from `checksec`, we can see that the NX bit (no execute) is disabled here. This makes it possible to execute shellcode residing on the stack, if we can control the return instruction pointer. This is also the goal of the challenge. However, we can also see that this is a PIE (Position Independent Executable) binary, meaning that it consists of Position Independent Code. This makes it harder for us since memory addresses are randomized on each program execution. We therefore have to leak an address to be able to control code execution.
 
-Luckily for us, the binary contains a format string vulnerability in [locked-coffer.c#L17](locked-coffer.c#L17). We can therefore send "format-strings" such as "%p " to *stdin*, which will cause `printf()` to start spitting out memory addresses of the program [exploit.py#L43](exploit.py#L43).
+Luckily for us, the binary contains a format string vulnerability in [locked-coffer.c#L17](../locked-coffer.c#L17). We can therefore send "format-strings" such as "%p " to *stdin*, which will cause `printf()` to start spitting out memory addresses of the program [exploit.py#L43](exploit.py#L43).
 
 By debugging the binary in GDB with [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization) disabled, we can locate what each leaked memory address is used for. Once we have found the stack address we want to use, we have a relative address to point the return instruction pointer (RIP) to! 
 
