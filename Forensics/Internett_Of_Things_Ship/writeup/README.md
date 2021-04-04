@@ -23,19 +23,19 @@ If you have not worked with MQTT traffic from before, I can say that by only hav
 Mkay, here's a good site to lookup mqtt specific stuff regarding its protocoll [mqtt docs](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718033)
 
 
-
-<img src="./assets/wireshark.png">
+![wireshark](assets/wireshark.png)
 So when looking on the traffic dump in wireshark you can see there is a lot going on, but i've made arrow pointing on the important stuff m'kay.
 So first off we can see ``Connect command`` which connects to the Mosquitto broker, and rigth under we can see that the credentials are correct as mosquitto give us an **ACK** back which gives us the green ligth to start publishing data. 
-The first message it start publishing is on the topic ``ship/secrets/passwd_db`` This is very intressting as who the f*** in his good mind would publish his password db  over mqtt... enough of that.
+The first message it start publishing is on the topic ``ship/secrets/passwd_db`` This is very intressting as who the `f***` in his good mind would publish his password db  over mqtt... enough of that.
 
 
 If we rigth click on the Packet > Follow > TCP Stream (As seen on the screenshot)
-<img src="./assets/wireshark_follow_tcp.png">
+
+![follow tcp](assets/wireshark_follow_tcp.png)
 
 
 Then we will see this window, from the data it sent.
-<img src="./assets/wireshark_stream.png">
+![Stream](assets/wireshark_stream.png)
 
 Start of the data is ``A9mimm`` and the end of the data is ``F9llk``
 
